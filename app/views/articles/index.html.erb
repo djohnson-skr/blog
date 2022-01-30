@@ -1,9 +1,16 @@
 <h1>Articles</h1>
 
 <ul>
-  <% @articles.each do |article|%>
-    <li>  
-      <%= article.title%>
+  <% @articles.each do |article| %>
+    <li>
+      <%# link_to calls on the helper method article_path which returns articles/<:id> when passed an article %>
+      <%# article_path is set up when using the resources method - run bin/rails routes to see them%>
+      <%# first argument for link_to is the text to be show, second is the links destination - aka the object %>
+      <%= link_to article.title, article %>
     </li>
   <% end %>
 </ul>
+
+<%# new_article_path (set up by resources) gives /articles/new - call it directly when using link_to %>
+<%# when doing link_to above (with just the object article path) it seems like it defaults to helper method article_path -> articles/<:id> %>
+<%= link_to "New Article", new_article_path%>
